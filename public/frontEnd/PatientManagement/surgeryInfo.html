@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+</head>
+<body ng-controller="SurgeryController">
+<!--<div id="page">
+    <div class="header"><img src="../img/logoPCU%20(2).jpg" height="174" width="721"/>
+        <h1 class="text-info">Lab Test Details Management</h1>
+
+    </div>
+</div>-->
+<img src="../../img/logoPCU (2).jpg" height="174" width="721"/>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="../Controller/surgery.controller.js"></script>
+
+<h1 class="text-info">Manage Surgery Details</h1>
+
+
+<div class="container">
+    <div class="navigation">
+        <div class="page-header">
+    </div>
+
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Search Patient</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <div class="col-md-6" >
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type='text' class="form-control" ng-model="searchVa.fName">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" >
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type='text' class="form-control" ng-model="searchVa.lName">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="data-table">
+
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Register Date</th>
+                            <th>Surgery Type</th>
+                            <th>Due Date</th>
+                            <th>Surgery Status</th>
+                            <th>Doctor's Note</th>
+                            <th>Patient's Condition</th>
+
+                            <th>Edit </th>
+                        </tr>
+
+                        <tr ng-repeat="Sinfo in surgerys | filter:searchVa">
+                            <td>{{Sinfo.fName}}</td>
+                            <td>{{Sinfo.lName}}</td>
+                            <td>{{Sinfo.regDate | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Sinfo.surgeryType}}</td>
+                            <td>{{Sinfo.dueDate | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Sinfo.surgeryStatus}}</td>
+                            <td>{{Sinfo.sgnote}}</td>
+                            <td>{{Sinfo.condition}}</td>
+
+                            <td>
+                                <button class="btn btn-warning btn-sm" ng-click="editSur(Sinfo._id)">Edit <span
+                                        class="glyphicon glyphicon-pencil"></span></button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <br/>
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Surgery Details</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" ng-model="Sinfo.fName" id="fName" required >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" ng-model="Sinfo.lName" id="lName" required >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Register Date</label>
+                                <input  type="date" class="form-control" ng-model="Sinfo.regDate" id="regDate" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Surgery Type</label>
+                                <select ng-model="Sinfo.surgeryType" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="EyeSurgery">Eye Surgery</option>
+                                    <option value="Appendicectomy">Appendicectomy</option>
+                                    <option value="Cholecystectomy">Cholecystectomy</option>
+                                    <option value="Pancreatectomy">Pancreatectomy</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Surgery Date</label>
+                                <input  type="date" class="form-control" ng-model="Sinfo.dueDat" id="dueDate" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Surgery Time</label>
+                                <select ng-model="Sinfo.time" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group pull-right">
+
+                <button class="btn btn-success btn-sm" id="adds" ng-click="addSurgery()"
+                    >Submit</button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Update Surgery Status</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" ng-model="Sinfo.fName" id="fName1" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" ng-model="Sinfo.lName" id="lName2" disabled >
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Surgery Status</label>
+
+                                <select ng-model="Sinfo.surgeryStatus" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="postponed">postponed</option>
+                                    <option value="Done">Done</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" >
+                            <div class="form-group">
+                                <label>Patient's Condition</label>
+                                <input class="form-control" ng-model="Sinfo.condition" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3" >
+                            <div class="form-group">
+                                <label>Doctor's Note</label>
+                                <input class="form-control" ng-model="Sinfo.sgnote" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group pull-right">
+
+                    <button class="btn btn-primary" id="update1" ng-click="update()"  ng-disabled ="!(!!Sinfo.fName && !!Sinfo.lName
+                                            && !!Sinfo.regDate && !! Sinfo.surgeryType && !!Sinfo.dueDate && !!Sinfo.surgeryStatus && !!Sinfo.sgnote && !! Sinfo.condition )">Update Status</button>
+                    <button class="btn btn-warning" id="clear" ng-click="clear()">Clear </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="data-table2">
+
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Register Date</th>
+                            <th>Surgery Type</th>
+                            <th>Due Date</th>
+                            <th>Surgery Status</th>
+                            <th>Doctor's Note</th>
+                            <th>Patient's Condition</th>
+                            <th>Cancel Surgery</th>
+                        </tr>
+
+                        <tr ng-repeat="Sinfo in surgerys | filter:searchV">
+                            <td>{{Sinfo.fName}}</td>
+                            <td>{{Sinfo.lName}}</td>
+                            <td>{{Sinfo.regDate | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Sinfo.surgeryType}}</td>
+                            <td>{{Sinfo.dueDate | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Sinfo.surgeryStatus}}</td>
+                            <td>{{Sinfo.sgnote}}</td>
+                            <td>{{Sinfo.condition}}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" ng-click="remove(Sinfo._id)">Cancel Surgery <span
+                                        class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+</body>

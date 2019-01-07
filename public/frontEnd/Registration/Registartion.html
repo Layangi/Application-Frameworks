@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Registartion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+</head>
+<body ng-controller="RegController">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="controller/Reg.Controller.js"></script>
+
+
+<!--<div id="page">
+    <div class="header"><img src="../img/logoPCU%20(2).jpg" height="174" width="721"/>
+        <h1 class="text-info">Prescription Details Management</h1>
+
+    </div>
+</div>-->
+
+<div class="container">
+    <div class="navigation">
+        <div class="page-header">
+        </div>
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Registration</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Registration Number</label>
+                                <input type='text' name="registration_number" class="form-control" ng-model="Registartion.registration_number"  placeholder="Registration Number" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>First  Name</label>
+                                <input type="text" name="first_name" placeholder="First Name" ng-model="Registartion.first_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" placeholder="Last Name" ng-model="Registartion.last_name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date Of Birth</label>
+                                <input type="date" ng-model="Registartion.date_of_birth" name="date_of_birth" class="form-control"><br/>
+                            </div>
+                        </div>
+
+                        <div class='col-md-4'>
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="text" name="age" placeholder="Age" ng-model="Registartion.age"  class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class='col-md-4'>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" name="address" placeholder="Address" ng-model="Registartion.address"  class="form-control">
+                            </div>
+                        </div>
+
+                        <div class='col-md-4'>
+                            <div ng-model="Registartion.gender" >
+                                <label>Gender</label>
+                                <form>
+                                    <input type="radio" name="gender" value="Male" >Male
+                                    <input type="radio" name="gender" value="Female">Female
+
+                                </form>
+                                </div>
+                        </div>
+
+                        <div class='col-md-4'>
+                            <div class="form-group">
+                                <label>Blood Group</label>
+                                <input list="bloodGroup" name="blood_group" placeholder="Blood Group" ng-model="Registartion.blood_group"  class="form-control">
+                                <datalist id="bloodGroup">
+                                    <option value="A+"></option>
+                                    <option value="A-"></option>
+                                    <option value="B+"></option>
+                                    <option value="B-"></option>
+                                    <option value="AB+"></option>
+                                    <option value="AB-"></option>
+                                    <option value="O+"></option>
+                                    <option value="O-"></option>
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Guarantor's Name</label>
+                                <input type="text" name="gurantor_name" placeholder="Guarantor's Name" ng-model="Registartion.gurantor_name" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Guarantor's Phone</label>
+                                <input type="text" name="gurantor_phone" placeholder="Guarantor's Phone" ng-model="Registartion.gurantor_phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date of Admission</label>
+                                <input type="date" ng-model="Registartion.date_of_admission" name="date_of_admission" class="form-control"><br/>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Ward Status</label>
+                                <label name="ward_status" value="No" ng-model="Registartion.ward_status" class="form-control" disabled>No</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Surgery Status</label>
+                                <label name="surgery_status" value="No" ng-model="Registartion.surgery_status" class="form-control" disabled>No</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Doctor Status</label>
+                                <label name="doctor_status"  value="No" ng-model="Registartion.doctor_status" class="form-control" disabled>No</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group pull-right" >
+                                    <button class="btn btn-success btn-sm" id="add" ng-click="addReg()">Add</button>
+                                    <button class="btn btn-primary" id="update" ng-click="update()">Update</button>
+                                    <button class="btn btn-warning" id="clear" ng-click="clear()">Clear </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+<div class="col-md-12">
+            <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="Search" placeholder="Enter the search value" class="form-control" ng-model="search">
+            </div>
+
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="data-table1">
+
+                        <tr>
+                            <th> Registration Number </th>
+                            <th> First Name </th>
+                            <th> Last Name </th>
+                            <th> Date Of Birth </th>
+                            <th> Age </th>
+                            <th> Address </th>
+                            <th> Gender</th>
+                            <th> Blood Group</th>
+                            <th> Guarantor's Name</th>
+                            <th> Guarantor's Phone</th>
+                            <th> Date Of Admission </th>
+                            <th> Ward Status</th>
+                            <th> Surgery Status</th>
+                            <th> Doctor Status</th>
+                            <th> Edit </th>
+                            <th> Delete</th>
+                        </tr>
+
+                        <tr ng-repeat="Registartion in Registartions | filter:search">
+                            <td> {{Registartion.registration_number}} </td>
+                            <td> {{Registartion.first_name}} </td>
+                            <td> {{Registartion.last_name}} </td>
+                            <td> {{Registartion.date_of_birth}} </td>
+                            <td> {{Registartion.age}} </td>
+                            <td> {{Registartion.address}} </td>
+                            <td> {{Registartion.gender}} </td>
+                            <td> {{Registartion.blood_group}} </td>
+                            <td> {{Registartion.gurantor_name}} </td>
+                            <td> {{Registartion.gurantor_phone}} </td>
+                            <td> {{Registartion.date_of_admission}} </td>
+                            <td>{{Registartion.ward_status}} </td>
+                            <td> {{Registartion.surgery_status}}</td>
+                            <td> {{Registartion.doctor_status}}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" ng-click="edit(Registartion._id)">Edit <span
+                                        class="glyphicon glyphicon-pencil"></span></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" ng-click="remove(Registartion._id)">Delete <span
+                                        class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+                </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

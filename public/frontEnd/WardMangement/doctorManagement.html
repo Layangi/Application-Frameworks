@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html ng-app="doctor">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<script src="controllers/doctorManagemetController.js"></script>
+
+
+<title>Assign A Doctor To Patient</title>
+</head>
+<body ng-controller="doctorController">
+<div class="container">
+
+    <div class="page-header">
+        <h2 class="text-info">Assign A Doctor To Patient</h2>
+    </div>
+    <div class="well well-lg">
+        <div class="container-fluid">
+
+
+            <div class="page-header">
+                <h4 class="text-info">Search Patient</h4>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            <input class="form-control" ng-model="search.first_name" id="SfirstName">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" ng-model="search.last_name" id="SsecondName">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="data-table">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+
+                        <th class="text-center">Add To Ward</th>
+                    </tr>
+
+
+                    <tr ng-repeat="patient in patientsArr | filter:search | filter: {doctor_status: 'No' }">
+                        <td>{{patient.registration_number}}</td>
+                        <td>{{patient.first_name}}</td>
+                        <td>{{patient.last_name}}</td>
+                        <td>{{patient.age}}</td>
+
+                        <td class="text-center">
+                            <button class="btn btn-warning btn-sm" ng-click="addToDoc(patient)">Add Doctor</button>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="well well-lg">
+        <div class="container-fluid">
+
+            <div class="col-md-12">
+
+
+                <div class="page-header">
+                    <h4 class="text-info">Patient Data</h4>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input class="form-control" ng-model="patient.firstName" id="firstName" disabled>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Second Name</label>
+                        <input class="form-control" ng-model="patient.secondName" id="secondName" disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Doctor Name:</label>
+                        <input  class="form-control" ng-model="patient.docName" id="docName">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Doctor Specialization</label>
+                        <select  class="form-control" ng-model="patient.docSpecialization" id="docSpecialization">
+                            <option value="Pathology">Pathology</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Endocrinology">Endocrinology</option>
+                            <option value="Gastroenterology">Gastroenterology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Radiology">Radiology</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Doctor Department</label>
+                        <select  class="form-control" ng-model="patient.docDepartment" id="docDepartment">
+                            <option value="Allergy and Clinical Immunology Unit.">Allergy and Clinical Immunology Unit.</option>
+                            <option value="Anesthesiology and Intensive Care.">Anesthesiology and Intensive Care.</option>
+                            <option value="Anesthesiology – Pain Clinic.">Anesthesiology – Pain Clinic.</option>
+                            <option value="OPD">OPD</option>
+                            <option value="Cardiothoracic Surgery.">Cardiothoracic Surgery.</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Patient Status</label>
+                        <select  class="form-control" ng-model="patient.status" id="status">
+                            <option value="Critical">Critical</option>
+                            <option value="Non-Critical">Non-Critical</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group pull-right">
+                            <button class="btn btn-warning" id="add" ng-click="AddPatient(patient)">Add</button>
+                            <button class="btn btn-warning" id="update" ng-click="UpdateTable(patient)">Update</button>
+                            <button class="btn btn-warning" id="clear" ng-click="clearData()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="page-header">
+        <h3><strong>Doctor Assigned Patient Data</strong></h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Patient Status</th>
+                        <th>Doctor Name</th>
+                        <th>Doctor Specialization</th>
+                        <th>Doctor Department</th>
+                        <th>Load Data</th>
+                        <th>Delete Patient</th>
+                    </tr>
+
+
+                    <tr ng-repeat="doc in DocArray  ">
+                        <td>{{doc.patient_id}}</td>
+                        <td>{{doc.patient_first_name}}</td>
+                        <td>{{doc.patient_last_name}}</td>
+                        <td>{{doc.patient_status}}</td>
+                        <td>{{doc.doctor_name}}</td>
+                        <td>{{doc.doctor_specialization}}</td>
+                        <td>{{doc.doctor_department}}</td>
+                        <td><button class="btn btn-warning" id="loadData" ng-click="loadData(doc)">Load Data</button></td>
+                        <td><button class="btn btn-warning" id="deleteData" ng-click="deleteData(doc)">Delete Patient</button></td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+
+
+</html>

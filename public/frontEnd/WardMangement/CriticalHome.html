@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Primari Unit Care</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script src="../Controller/app.js"></script>
+    <script src="../Controller/controller.js"></script>
+    <script src="../../bower_components/angular-route/angular-route.min.js"></script>
+    <link rel="stylesheet" href="../../CSS/style.css">
+
+</head>
+
+<body>
+<div id="page">
+    <div id="header">
+        <ul id="navigation"><img src="../../img/logoPCU%20(2).jpg" height="174" width="721"/>
+            <h1>Ward Management</h1>
+
+            <li> <a href="WardManagemenet.html" >
+                Ward Management
+            </a></li>
+            <li > <a href="surgeonManagement.html">
+                Surgeon Management
+            </a></li>
+            <li> <a href="doctorManagement.html">
+                Doctor Management
+            </a></li>
+
+        </ul>
+    </div>
+
+</div>
+<!--<div><img src="../JavaScript/img/page1_img4.jpg" height="200" width="285"/></div>-->
+<div ng-view></div>
+</body>

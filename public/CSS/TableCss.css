@@ -1,0 +1,9 @@
+table {
+    width: 40%; /* the ’border’ attribute is removed here */
+    border-collapse:collapse }
+td {
+    border: 0.1em solid;
+    text-align: center; }
+th {
+    border: 0.1em solid;
+    text-align: center; }

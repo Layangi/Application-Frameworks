@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+</head>
+<body ng-controller="PatientController">
+
+<div id="page">
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="patient.controller.js"></script>
+
+        <h1 class="text-info">Check History</h1>
+
+
+<div class="container">
+    <div class="navigation">
+        <div class="page-header">
+        </div>
+
+
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Search Patient</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <div class="col-md-6" >
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type='text' class="form-control" ng-model="searchValue.first_name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" >
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type='text' class="form-control" ng-model="searchValue.last_name">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="data-table">
+
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date Of Birth</th>
+                            <th>Age</th>
+
+                        </tr>
+
+                        <tr ng-repeat="reg in regis | filter:searchValue">
+                            <td>{{reg.first_name}}</td>
+                            <td>{{reg.last_name}}</td>
+                            <td>{{reg.date_of_birth | date:"dd/MM/yyyy"}}</td>
+                            <td>{{reg.age}}</td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Patient Details</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type='text' class="form-control" ng-model="Pinfo.first_name" required>
+                                <span ng-show="!Pinfo.first_name">Please Enter Data!</span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type='text' class="form-control" ng-model="Pinfo.last_name" required>
+                                <span ng-show="!Pinfo.last_name">Please Enter Data!</span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type='text' class="form-control" ng-model="Pinfo.address" required>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>NIC</label>
+                                <input type='text' class="form-control" ng-model="Pinfo.nic" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Contact No</label>
+                                <input type='number' class="form-control" ng-model="Pinfo.contactNo"  require ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date Of Birth</label>
+                                <input type='date' class="form-control" ng-model="Pinfo.date_of_birth" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type='number' class="form-control" ng-model="Pinfo.age" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div>
+                                <label>Gender</label><BR/>
+                                <select ng-model="Pinfo.gender" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class='col-md-4'>
+                            <div>
+                                <label>Blood Group</label><BR/>
+                                <select ng-model="Pinfo.bloodGroup" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="A-">A-</option>
+                                    <option value="A+">A+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="AB+">AB+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>Past History</strong></h3>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Had Any Illness that made to see the Doctor?  </label>
+                                <input type='text' class="form-control" ng-model="Pinfo.illness" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div>
+                                <label>Any Allergies to Drugs ?</label><BR/>
+                                <select ng-model="Pinfo.allergy" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="well well-lg">
+            <div class="container-fluid">
+                <h3><strong>General / On Examination</strong></h3>
+                <div class="row">
+
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Physical Appearance</label><br/>
+                                <label>Height(cm) </label>
+                                <input type='number' class="form-control" ng-model="Pinfo.height" require ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>-</label><br/>
+                                <label>Weigth(kg) </label>
+                                <input type='text' class="form-control" ng-model="Pinfo.weight" require ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Condition</label><br/>
+                                <label>Mental State </label>
+                                <input type='text' class="form-control" ng-model="Pinfo.mentalState" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div>
+                                <label>-</label><br/>
+                                <label>Back Pain </label><BR/>
+                                <select ng-model="Pinfo.backPain" class="form-control">
+                                    <option value="">--</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="container">
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <label>Doctor's Note</label>
+                                <input type='text' class="form-control" ng-model="Pinfo.note" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group pull-right">
+                    <button class="btn btn-success btn-sm" id="add" ng-click = "addPatient()"  ng-disabled ="!(!!Pinfo.first_name && !!Pinfo.last_name
+                                            && !!Pinfo.nic && !! Pinfo.address && !!Pinfo.contactNo && !!Pinfo.gender && !!Pinfo.date_of_birth && !! Pinfo.age && !!Pinfo.bloodGroup && !!Pinfo.illness && !!Pinfo.allergy && !! Pinfo.height && !!Pinfo.weight && !!Pinfo.mentalState && !!Pinfo.backPain && !!Pinfo.note )"
+                        > Submit</button>
+                    <button class="btn btn-primary" id="update" ng-click="update()" ng-disabled ="!(!!Pinfo.first_name && !!Pinfo.last_name
+                                            && !!Pinfo.nic && !! Pinfo.address && !!Pinfo.contactNo && !!Pinfo.gender && !!Pinfo.date_of_birth && !! Pinfo.age && !!Pinfo.bloodGroup && !!Pinfo.illness && !!Pinfo.allergy && !! Pinfo.height && !!Pinfo.weight && !!Pinfo.mentalState && !!Pinfo.backPain && !!Pinfo.note )">
+                        >Update</button>
+                    <button class="btn btn-warning" id="clear" ng-click="clear()">Clear </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="datatable">
+
+                        <tr>
+
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>NIC</th>
+                            <th>Address</th>
+                            <th>Contact No</th>
+                            <th>Gender</th>
+                            <th>Date Of Birth</th>
+                            <th>Age</th>
+                            <th>Blood Group</th>
+                            <th>Illness</th>
+                            <th>Allergy</th>
+                            <th>Height (cm)</th>
+                            <th>Weight (kg) </th>
+                            <th>Patient's State</th>
+                            <th>Back Pain</th>
+                            <th>Doctor's Note</th>
+                            <th>Edit </th>
+                            <th>Delete</th>
+                        </tr>
+
+                        <tr ng-repeat="Pinfo in patients ">
+                            <td>{{Pinfo.first_name}}</td>
+                            <td>{{Pinfo.last_name}}</td>
+                            <td>{{Pinfo.nic}}</td>
+                            <td>{{Pinfo.address}}</td>
+                            <td>{{Pinfo.contactNo}}</td>
+                            <td>{{Pinfo.gender}}</td>
+                            <td>{{Pinfo.date_of_birth | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Pinfo.age}}</td>
+                            <td>{{Pinfo.bloodGroup}}</td>
+                            <td>{{Pinfo.illness}}</td>
+                            <td>{{Pinfo.allergy}}</td>
+                            <td>{{Pinfo.height}}</td>
+                            <td>{{Pinfo.weight}}</td>
+                            <td>{{Pinfo.mentalState}}</td>
+                            <td>{{Pinfo.backPain}}</td>
+                            <td>{{Pinfo.note}}</td>
+
+
+                            <td>
+                                <button class="btn btn-warning btn-sm" ng-click="edit(Pinfo._id)">Edit <span
+                                        class="glyphicon glyphicon-pencil"></span></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" ng-click="remove(Pinfo._id)">Delete <span
+                                        class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
+
+

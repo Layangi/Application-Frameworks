@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dynatable/0.3.1/jquery.dynatable.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+
+</head>
+<body ng-controller="LabController">
+<div id="page">
+    <div class="header"><img src="../../img/logoPCU%20(2).jpg" height="174" width="721"/>
+        <h1 class="text-info">Lab Test Details Management</h1>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!--<script src="../Controller/Lab.Controller.js"></script>-->
+<script src="Controller/Lab.Controller.js"></script>
+
+<div class="container">
+    <div class="navigation">
+        <div class="page-header">
+        </div>
+        <div class="well well-lg">
+            <div class="container-fluid">
+
+                <h3><strong>Search Patient</strong></h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" ng-model="search.first_name" >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" ng-model="search.last_name">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <input type='text' class="form-control" ng-model="Prescription.registration_number" ng-bind="{{patient.registration_number}}">  -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="data-table">
+
+                        <tr>
+                            <th> ID</th>
+                            <th> First Name</th>
+                            <th> Last Name</th>
+                            <th> Age</th>
+                            <!--<th> Action</th>-->
+                        </tr>
+
+
+                        <tr ng-repeat="patient in patients | filter:search ">
+                            <td>{{patient.registration_number}}</td>
+                            <td>{{patient.first_name}}</td>
+                            <td>{{patient.last_name}}</td>
+                            <td>{{patient.age}}</td>
+                            <!--<td>
+                                <button class="btn btn-warning btn-sm" ng-click="editPatient(patient._id)">Edit <span
+                                        class="glyphicon glyphicon-pencil"></span></button>
+                            </td>-->
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="well well-lg">
+
+            <div class="container-fluid">
+                <h3><strong>Lab Test Details</strong></h3>
+
+                   <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Patient ID </label>
+                                <input type='text' class="form-control" ng-model="Test.registration_number"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Test Code</label>
+                                <input type='text' class="form-control"ng-model="Test.testCode" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Test Name</label>
+                                <input type='text' class="form-control" ng-model="Test.testName"/>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class='col-md-3 '>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select ng-model="Test.type"  class="form-control">
+                                        <option>Select Type</option>
+                                        <option>Critical</option>
+                                        <option>Non-Critical</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <div ng-model="Test.date">{{date | date:'yyyy-MM-dd'}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group pull-right">
+                                    <button class="btn btn-success btn-sm" id="add" ng-click="addLab()"
+                                            ng-disabled="!(!!Test.registration_number && !!Test.type
+                                            && !!Test.testCode && !! Test.testName)">Add</button>
+
+                                    <button class="btn btn-primary" id="update" ng-click="update()"
+                                            ng-disabled="!(!!Test.registration_number && !!Test.type
+                                            && !!Test.testCode && !! Test.testName)">Update</button>
+
+                                    <button class="btn btn-warning" id="clear" ng-click="clear()"> Clear </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h3><strong>Add Lab Test</strong></h3>
+        </div>
+
+        <div class="page-header">
+            <h3><strong>Lab Test Details</strong></h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="datatable">
+
+                        <tr>
+                            <th> Patient ID </th>
+                            <th> Type </th>
+                            <th> Test Code </th>
+                            <th> Test Name </th>
+                            <th> Date</th>
+                            <th> Edit </th>
+                            <th> Delete</th>
+                        </tr>
+
+                        <tr ng-repeat="Test in Tests">
+                            <td> {{Test.registration_number}} </td>
+                            <td> {{Test.type}} </td>
+                            <td> {{Test.testCode}} </td>
+                            <td> {{Test.testName}} </td>
+                            <td> {{date | date:'yyyy-MM-dd'}} </td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" ng-click="edit(Test._id)">Edit <span
+                                        class="glyphicon glyphicon-pencil"></span></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" ng-click="remove(Test._id)">Delete <span
+                                        class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group pull-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
